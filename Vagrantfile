@@ -64,8 +64,8 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-  #   sudo iptables -I INPUT 4 -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
-  #   sudo apt-get install -y apache2
+  config.vm.provision "shell", run: "always", inline: <<-SHELL
+      # executa um backup do banco de dados
+      sudo sh /vagrant/db/backup-developer-db.sh
   SHELL
 end
